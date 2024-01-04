@@ -1,0 +1,4 @@
+icecream
+pandas
+python-dotenv
+streamlit
