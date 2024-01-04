@@ -289,6 +289,8 @@ if st.session_state.page == "execute":
                     }
                     for arg in function_details["args"]
                 ]
+                # remove empty args (i.e., args with no value)
+                args = [arg for arg in args if arg["value"]]
             ic(args)
             response = requests.post(
                 SERVER_URL + "/functions/" + function_name + "/execute/",
@@ -300,6 +302,6 @@ if st.session_state.page == "execute":
                 except ValueError:
                     result = response.text
                 st.write("Result")
-                st.success(str(result))
+                st.write(result)
             else:
                 st.error("Failed to execute function")
